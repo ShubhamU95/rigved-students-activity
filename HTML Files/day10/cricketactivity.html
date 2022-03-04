@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket</title>
+    
+        <script>            
+            var employee ={
+                id:123111,
+                firstname:"Sachin",
+                lastname:"Tendulkar",
+                gender:"male", 
+            };
+            var address=[
+                {state:'Maharashtra',city:'Mumbai'}
+            ];
+            var address1=[
+                {id:28222,
+                firstname:"Rahul",
+                lastname:"Dravid",
+                gender:"male",
+                state:'Karnataka',
+                city:'Bangalore'}
+            ];
+            var address2=[
+                {id:43456,
+                firstname:"Rohit",
+                lastname:"Sharma",
+                gender:"male",
+                state:'Maharashtra',
+                city:'Mumbai'}
+            ];
+        </script>
+    </head>
+	
+    <body>
+        <right>
+        <script>
+            document.write("<h2>Mumbai Premier League</h2>");
+            document.write("<table border=1 >");
+            document.write("<tr>");
+            document.write("<th>Id</th>");
+            document.write("<th>First Name</th>");
+            document.write("<th>Last Name</th>");
+            document.write("<th>Gender</th>");
+            document.write("<th>State</th>");
+            document.write("<th>City</th>");
+            document.write("</tr>");
+            document.write("<tr>");
+            document.write("<td>"+employee.id+"</td>");
+            document.write("<td>"+employee.firstname+"</td>");
+            document.write("<td>"+employee.lastname+"</td>");
+            document.write("<td>"+employee.gender+"</td>");
+            for(var i=0;i<address.length;i++){
+                document.write('<td>'+address[i].state+'</td>'+'<td>'+address[i].city+'</td>');
+
+            }
+            for(var i=0;i<address1.length;i++){
+                document.write('<tr>'+'<td>'+address1[i].id+'</td>'+'<td>'+address1[i].firstname+'</td>'+'<td>'+address1[i].lastname+'</td>'+'<td>'+address1[i].gender+'</td>'+'<td>'+address1[i].state+'</td>'+'<td>'+address1[i].city+'</td>');
+
+            }
+            for(var i=0;i<address2.length;i++){
+                document.write('<tr>'+'<td>'+address2[i].id+'</td>'+'<td>'+address2[i].firstname+'</td>'+'<td>'+address2[i].lastname+'</td>'+'<td>'+address2[i].gender+'</td>'+'<td>'+address2[i].state+'</td>'+'<td>'+address2[i].city+'</td>');
+
+            }
+            document.write("</tr>");
+            document.write("</table>");
+        </script>
+        </right>
+    </body>
+</html>
