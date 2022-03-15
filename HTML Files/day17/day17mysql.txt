@@ -1,0 +1,71 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 19
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database shubham;
+ERROR 1007 (HY000): Can't create database 'shubham'; database exists
+mysql> create table employees(employee_id int primary key, emp_name char(15), age int(2), email varchar(30));
+ERROR 1046 (3D000): No database selected
+mysql> use shubham;
+Database changed
+mysql> create table employees(employee_id int primary key, emp_name char(15), age int(2), email varchar(30));
+Query OK, 0 rows affected, 1 warning (1.56 sec)
+
+mysql> alter table employees add constraint unique(email);
+Query OK, 0 rows affected (0.47 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employees
+    -> add check (age>18);
+Query OK, 0 rows affected (1.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into employees(employee_id, emp_name, age,email)
+    -> values(100, 'shubham',24,'shubhamuthale9@gmail.com');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> alter table employees add column aadhar int (12);
+Query OK, 0 rows affected, 1 warning (1.70 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> select * from employees;
++-------------+----------+------+--------------------------+--------+
+| employee_id | emp_name | age  | email                    | aadhar |
++-------------+----------+------+--------------------------+--------+
+|         100 | shubham  |   24 | shubhamuthale9@gmail.com |   NULL |
++-------------+----------+------+--------------------------+--------+
+1 row in set (0.00 sec)
+
+mysql> alter table add constraint unique (adhar);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add constraint unique (adhar)' at line 1
+mysql> alter table employees add constraint unique (adhar);
+ERROR 1072 (42000): Key column 'adhar' doesn't exist in table
+mysql> alter table employees add constraint unique (aadhar);
+Query OK, 0 rows affected (0.64 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into employees(employee_id, emp_name, age,email)
+    -> values;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+mysql> insert into employees(employee_id, emp_name, age,email,aadhar)
+    -> values(101,'raj',25,'raj@gmail.com',123450);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into employees(employee_id, emp_name, age,email,aadhar)
+    -> values;(103,'mj',26,'mj@gmail.com',123450);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '103,'mj',26,'mj@gmail.com',123450)' at line 1
+mysql> values(103,'mj',26,'mj@gmail.com',123450);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(103,'mj',26,'mj@gmail.com',123450)' at line 1
+mysql>
