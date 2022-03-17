@@ -1,0 +1,97 @@
+mysql> use shubham;
+Database changed
+mysql> create table students(RollNO int primary key, Name char(15), Age int(2));
+Query OK, 0 rows affected, 1 warning (1.51 sec)
+
+mysql> insert into students(RollNO, Name, Age)
+    -> values(1,'Rahul',20);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> select * from students;
++--------+-------+------+
+| RollNO | Name  | Age  |
++--------+-------+------+
+|      1 | Rahul |   20 |
++--------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into students(RollNO, Name, Age)
+    -> values(2,'RAJU',20);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into students(RollNO, Name, Age)
+    -> values(1,'MAHESH',20);
+ERROR 1062 (23000): Duplicate entry '1' for key 'students.PRIMARY'
+mysql> values(3,'MAHESH',20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(3,'MAHESH',20)' at line 1
+mysql> insert into students(RollNO, Name, Age)
+    -> values(3,'MAHESH',21);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from students;
++--------+--------+------+
+| RollNO | Name   | Age  |
++--------+--------+------+
+|      1 | Rahul  |   20 |
+|      2 | RAJU   |   20 |
+|      3 | MAHESH |   21 |
++--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> create table marks(m_id int unique, physics int (3), maths int (3), chemistry int (3),rollno int (2), foreign key(rollno) references students(rollno));
+Query OK, 0 rows affected, 4 warnings (2.05 sec)
+
+mysql> Query OK, 0 rows affected, 4 warnings (3.16 sec)
+    -> bihsbcnljac
+    ->
+    -> \c
+mysql> Query OK, 0 rows affected, 4 warnings (3.16 sec)
+    -> insert into marks values(11, 70, 90, 70, 2);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Query OK, 0 rows affected, 4 warnings (3.16 sec)
+insert into marks values(11, 70' at line 1
+mysql> insert into marks values(11, 70, 90, 70, 2);
+Query OK, 1 row affected (0.15 sec)
+
+mysql> insert into marks values(22, 80, 80, 80, 1);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into marks values(33, 90, 90, 70, 3);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into marks values(44, 88, 88, 77, 4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`shubham`.`marks`, CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`rollno`) REFERENCES `students` (`RollNO`))
+mysql> ^C
+mysql> ^C
+mysql> insert into marks values(44, 88, 88, 77, 4);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`shubham`.`marks`, CONSTRAINT `marks_ibfk_1` FOREIGN KEY (`rollno`) REFERENCES `students` (`RollNO`))
+mysql> select * from students;
++--------+--------+------+
+| RollNO | Name   | Age  |
++--------+--------+------+
+|      1 | Rahul  |   20 |
+|      2 | RAJU   |   20 |
+|      3 | MAHESH |   21 |
++--------+--------+------+
+3 rows in set (0.24 sec)
+
+mysql> select * from marks;
++------+---------+-------+-----------+--------+
+| m_id | physics | maths | chemistry | rollno |
++------+---------+-------+-----------+--------+
+|   11 |      70 |    90 |        70 |      2 |
+|   22 |      80 |    80 |        80 |      1 |
+|   33 |      90 |    90 |        70 |      3 |
++------+---------+-------+-----------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select s.RollNo, s.Name, m.physics, m.maths, m.chemistry from students s inner join marks m on s.rollno=m.rollno;
++--------+--------+---------+-------+-----------+
+| RollNo | Name   | physics | maths | chemistry |
++--------+--------+---------+-------+-----------+
+|      1 | Rahul  |      80 |    80 |        80 |
+|      2 | RAJU   |      70 |    90 |        70 |
+|      3 | MAHESH |      90 |    90 |        70 |
++--------+--------+---------+-------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>
