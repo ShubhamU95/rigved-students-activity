@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { FormControlDemoComponent } from './form-control-demo/form-control-demo.component';
 import { FormGComponent } from './form-g/form-g.component';
+import {FormBuilder} from '@angular/forms';
 import { ProfileComponent } from './profile/profile.component';
 import { FormBuilderComponent } from './form-builder/form-builder.component';
 
@@ -19,6 +20,9 @@ import { FormBuilderComponent } from './form-builder/form-builder.component';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    FormBuilderComponent,
+    FormBuilder,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
